@@ -17,7 +17,7 @@ class TasksController < ApplicationController
     @task.user = current_user
     if @task.save
       flash[:success] ="Task が正常に投稿されました"
-      redirect_to @task
+      redirect_to root_path
     else
       flash.now[:danger] = "Task が投稿されませんでした"
       render :new
@@ -31,7 +31,7 @@ class TasksController < ApplicationController
 
     if @task.update(task_params)
       flash[:success] = 'Task は正常に更新されました'
-      redirect_to @task
+      redirect_to root_path
 
     else
       flash.now[:danger] = 'Task は更新されませんでした'
@@ -44,7 +44,9 @@ class TasksController < ApplicationController
     @task.destroy
 
     flash[:success] = 'Task は正常に削除されました'
-    redirect_to tasks_url
+    #redirect_to tasks_url
+    redirect_to root_path
+    #root to: 'toppages#index'
   end
   
   private
